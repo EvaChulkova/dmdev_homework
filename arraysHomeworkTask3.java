@@ -12,8 +12,6 @@ package arrays;
                             [1, 9, 3]
 */
 
-import java.util.Arrays;
-
 public class arraysHomeworkTask3 {
     public static void main(String[] args) {
         int[] array = {-4, 0, 1, 9, 0, -18, 3};
