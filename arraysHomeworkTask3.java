@@ -12,14 +12,18 @@ package arrays;
                             [1, 9, 3]
 */
 
+import java.util.Arrays;
+
 public class arraysHomeworkTask3 {
     public static void main(String[] args) {
         int[] array = {-4, 0, 1, 9, 0, -18, 3};
 
-        decomposeArray(array);
+        int[][] arrayOfArrays = decomposeArray(array);
+        printArrayOfArrays(arrayOfArrays);
+
     }
 
-    private static void decomposeArray(int[] array) {
+    private static int[][] decomposeArray(int[] array) {
         int amountOfPos = 0;
         int amountOfNeg = 0;
         int amountOfZeros = 0;
@@ -56,19 +60,23 @@ public class arraysHomeworkTask3 {
         }
 
         /*
+        System.out.println();
         System.out.println(Arrays.toString(posArray));
         System.out.println(Arrays.toString(negArray));
         System.out.println(Arrays.toString(zeroArray));
-        */
+         */
 
         int[][] arrayOfArrays = new int[3][];
         arrayOfArrays[0] = posArray;
         arrayOfArrays[1] = negArray;
         arrayOfArrays[2] = zeroArray;
 
+        return arrayOfArrays;
+    }
 
-        for (int i = 0; i < arrayOfArrays.length; i++) {
-            int[] ints = arrayOfArrays[i];
+    public static void printArrayOfArrays(int[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            int[] ints = array[i];
             for (int j = 0; j < ints.length; j++) {
                 System.out.print(ints[j] + " ");
             }
