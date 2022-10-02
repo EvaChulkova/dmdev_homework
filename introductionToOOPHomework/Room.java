@@ -21,12 +21,10 @@ public class Room {
     }
 
     public void printState() {
-        //System.out.println("Проходная комната (true/false): " + isPassageRoom);
         if (isPassageRoom) {
             System.out.println("Проходная комната");
         } else {
             System.out.println("Непроходная комната");
         }
     }
-
 }

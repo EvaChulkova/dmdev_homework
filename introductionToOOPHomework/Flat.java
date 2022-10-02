@@ -23,6 +23,5 @@ public class Flat {
 
     public void printState() {
         System.out.println("Номер квартиры: " + number + ", количество комнат: " + Room.getCounter());
-
     }
 }

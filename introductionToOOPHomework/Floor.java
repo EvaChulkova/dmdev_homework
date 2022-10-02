@@ -24,6 +24,5 @@ public class Floor {
 
     public void printState() {
         System.out.println("Номер этажа: " + number + ", количество квартир: " + Flat.getCounter());
-        getFlats();
     }
 }

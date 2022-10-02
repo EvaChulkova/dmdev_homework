@@ -17,6 +17,5 @@ public class House {
 
     public void printState() {
         System.out.println("Номер дома: " + number + ", количество этажей: " + Floor.getCounter());
-
     }
 }
