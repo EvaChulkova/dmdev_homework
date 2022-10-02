@@ -20,12 +20,13 @@ public class Room {
         return counter;
     }
 
-    public void setValue(boolean isPassageRoom) {
-        this.isPassageRoom = isPassageRoom;
-    }
-
     public void printState() {
-        System.out.println("Проходная комната (true/false): " + isPassageRoom);
+        //System.out.println("Проходная комната (true/false): " + isPassageRoom);
+        if (isPassageRoom) {
+            System.out.println("Проходная комната");
+        } else {
+            System.out.println("Непроходная комната");
+        }
     }
 
 }

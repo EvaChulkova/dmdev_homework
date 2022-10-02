@@ -22,6 +22,7 @@ package OOP.homework.introductionToOOPHomework;
 public class Runner {
     public static void main(String[] args) {
 
+        /*
         Room[] rooms = new Room[2];
         for (int i = 0; i < rooms.length; i++) {
             if (i % 2 == 0) {
@@ -30,37 +31,58 @@ public class Runner {
                 rooms[i] = new Room(false);
             }
         }
+         */
 
+        /*
         Flat[] flats = new Flat[2];
         for (int i = 0; i < flats.length; i++) {
-            flats[i] = new Flat(1, rooms);
-            flats[i].printState();
+            flats[i] = new Flat(i + 1, rooms);
         }
-        //flats[1].printState();
+        flats[1].printState();
+         */
 
+        /*
         Floor[] floors = new Floor[3];
         for (int i = 0; i < floors.length; i++) {
-            floors[i] = new Floor(2, flats);
-            floors[i].printState();
+            floors[i] = new Floor(i + 1, flats);
         }
-        //floors[1].printState();
+        floors[1].printState();
+        */
 
-        House[] houses = new House[3];
+        /*
+        House[] houses = new House[1];
         for (int i = 0; i < houses.length; i++) {
-            houses[i] = new House(5, floors);
-            houses[i].printState();
+            houses[i] = new House(i + 1, flats);
         }
-        //houses[1].printState();
+        houses[1].printState();
 
-        printAllInformation(houses[1]);
+         */
+
+        Flat flat1 = new Flat(1, new Room[]{new Room(false), new Room(false), new Room(false)});
+        Flat flat2 = new Flat(2, new Room[]{new Room(true), new Room(true)});
+        Flat flat3 = new Flat(3, new Room[]{new Room(false), new Room(true), new Room(false)});
+        Flat flat4 = new Flat(4, new Room[]{new Room(true), new Room(false)});
+
+        Floor floor1 = new Floor(1, new Flat[]{flat1, flat3});
+        Floor floor2 = new Floor(1, new Flat[]{flat2, flat4});
+
+        House ourHouse = new House(1, new Floor[]{floor1, floor2});
+
+        printAllInformation(ourHouse);
 
     }
 
     public static void printAllInformation(House houses) {
         houses.printState();
-        //houses.getFloors().printState();
-        //houses.getFloors().getFlats().printState();
-        //houses.getFloors().getFlats().getRooms().getState();
-
+        for (Floor floor : houses.getFloors()) {
+            floor.printState();
+            for (Flat flat : floor.getFlats()) {
+                flat.printState();
+                for (Room room : flat.getRooms()) {
+                    room.printState();
+                }
+            }
+            System.out.println();
+        }
     }
 }
