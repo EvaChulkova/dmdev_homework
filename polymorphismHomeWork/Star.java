@@ -9,6 +9,14 @@ public class Star extends SpaceObject {
         this.age = age;
     }
 
+    public void transformationIntoSupernova() {
+        if (age > 3500) {
+            System.out.println("Я взрослая звезда и превращаюсь в сверхновую.");
+        } else {
+            System.out.println("Я молодая звезда и преращение в сверхновую произойдёт нескоро.");
+        }
+    }
+
     @Override
     public String toString() {
         return "Описание: имя - " + getName() +

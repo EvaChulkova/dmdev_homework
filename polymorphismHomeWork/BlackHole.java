@@ -9,6 +9,11 @@ public class BlackHole extends SpaceObject{
         this.amount = amount;
     }
 
+    public String absorbSpaceObject() {
+        System.out.println("Я чёрная дыра и поглощаю космические объекты.");
+        return "Я чёрная дыра и поглощаю космические объекты.";
+    }
+
     @Override
     public String toString() {
           return "Описание: имя - " + getName() +
@@ -16,5 +21,9 @@ public class BlackHole extends SpaceObject{
                   ", площадь - " + getSquare() +
                 ", количество объектов, затянутых в черную дыру - " + amount +
                   ", находится в солнечной системе - " + getIsInSolarSystem();
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

@@ -26,4 +26,8 @@ public class Asteroid extends SpaceObject implements Flyable {
                 ", совершает контролируемый полёт - " + isControlledFlight() +
                 ", находится в солнечной системе - " + getIsInSolarSystem();
     }
+
+    public int getSpeed() {
+        return speed;
+    }
 }
