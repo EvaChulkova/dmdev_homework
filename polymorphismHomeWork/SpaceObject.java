@@ -14,8 +14,6 @@ public abstract class SpaceObject {
         this.isInSolarSystem = isInSolarSystem;
     }
 
-    public abstract String toString();
-
     public double findDiameter() {
         System.out.println("Диаметр объекта " + getName() + ": ");
         return 2 * Math.sqrt(getSquare()/(4 * PI));
