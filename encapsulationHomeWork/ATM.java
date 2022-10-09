@@ -57,7 +57,7 @@ public class ATM {
             System.out.println("В банкомате недостаточно средств для выдачи запрашиваемой суммы");
             return false;
         } else {
-            if (sum % 10 != 0) {
+            if (sum % 10 != 0 || sum == 10 || sum == 30) {
                 System.out.println("Запрашиваемая сумма не может быть выдана, выдаются купюры номиналом 100, 50 и 20");
                 return false;
             } else {
@@ -65,7 +65,24 @@ public class ATM {
                 int balanceAfterOperationWithHundreds = sum - amountHundreds * NOMINAL_HUNDREDS;
 
                 if (balanceAfterOperationWithHundreds > 0) {
-                    if (balanceAfterOperationWithHundreds == 50 || balanceAfterOperationWithHundreds == 70 || balanceAfterOperationWithHundreds == 90) {
+                    if (balanceAfterOperationWithHundreds == 10 || balanceAfterOperationWithHundreds == 30) {
+                        int amountHundredsToGet110Or130 = amountHundreds - 1;
+                        balanceAfterOperationWithHundreds = sum - amountHundredsToGet110Or130 * NOMINAL_HUNDREDS;
+
+                        int amountFiftiesToGet110Or130 = ((sum - amountHundredsToGet110Or130 * NOMINAL_HUNDREDS) / NOMINAL_FIFTIES) - 1;
+                        int balanceAfterOperationWithFifties = balanceAfterOperationWithHundreds - amountFiftiesToGet110Or130 * NOMINAL_FIFTIES;
+
+                        if (balanceAfterOperationWithFifties > 0) {
+                            int amountTwenties = (sum - amountHundredsToGet110Or130 * NOMINAL_HUNDREDS - amountFiftiesToGet110Or130 * NOMINAL_FIFTIES) / NOMINAL_TWENTIES;
+                            System.out.println("Выдано по 100: " + amountHundredsToGet110Or130 + ", выдано по 50: " + amountFiftiesToGet110Or130 + ", выдано по 20: " + amountTwenties);
+                            return true;
+                        } else {
+                            System.out.println("Выдано по 100: " + amountHundredsToGet110Or130 + ", выдано по 50: " + amountFiftiesToGet110Or130);
+                            return true;
+                        }
+                    }
+
+                    else if (balanceAfterOperationWithHundreds == 50 || balanceAfterOperationWithHundreds == 70 || balanceAfterOperationWithHundreds == 90) {
                         int amountFifties = (sum - amountHundreds * NOMINAL_HUNDREDS) / NOMINAL_FIFTIES;
                         int balanceAfterOperationWithFifties = balanceAfterOperationWithHundreds - amountFifties * NOMINAL_FIFTIES;
 
@@ -78,11 +95,15 @@ public class ATM {
                                 return true;
                             }
 
-                    } else if (balanceAfterOperationWithHundreds == 20 || balanceAfterOperationWithHundreds == 40 || balanceAfterOperationWithHundreds == 60 || balanceAfterOperationWithHundreds == 80) {
+                    }
+
+                    else if (balanceAfterOperationWithHundreds == 20 || balanceAfterOperationWithHundreds == 40 || balanceAfterOperationWithHundreds == 60 || balanceAfterOperationWithHundreds == 80) {
                         int amountTwenties = (sum - amountHundreds * NOMINAL_HUNDREDS) / NOMINAL_TWENTIES;
                         System.out.println("Выдано по 100: " + amountHundreds + ", выдано по 20: " + amountTwenties);
                         return true;
-                    } else {
+                    }
+
+                    else {
                         System.out.println("Невозможно выдать запрашиваемую сумму - используется номинал 100, 50 и 20");
                         return false;
                     }
