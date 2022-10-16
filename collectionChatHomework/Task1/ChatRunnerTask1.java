@@ -36,6 +36,7 @@ public class ChatRunnerTask1 {
         System.out.println(chatList);
 
         Collections.sort(chatList);
+        System.out.println("Сортировка (default): ");
         System.out.println(chatList);
 
         List<Chat> newList = deleteChatLessThanThousandUsers(chatList);
@@ -45,8 +46,6 @@ public class ChatRunnerTask1 {
         newList.sort(new AmountOfUsersComparator().thenComparing(new ChatNameComparator()));
         System.out.println("Чаты по убыванию количества пользователей (если количества пользователей равны, то в алфавитном порядке по названию):");
         System.out.println(newList);
-
-        //на chat интерфейс comparable и там переопределить compareTo()
 
     }
 
