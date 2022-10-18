@@ -6,46 +6,61 @@ import Collections.homework.collectionCinemaHomework.enums.Month;
 import java.util.*;
 
 public class Cinema {
-    private Map<Integer, Set<Film>> films = new LinkedHashMap<>();
+    private final Map<Integer, LinkedHashSet<Film>> films;
 
-    public Cinema(Map<Integer, Set<Film>> films) {
+
+    public Cinema(Map<Integer, LinkedHashSet<Film>> films) {
         this.films = films;
     }
 
     public void addFilm (Film film) {
-        Set<Film> movies = new LinkedHashSet<>();
+        LinkedHashSet<Film> movies = new LinkedHashSet<>();
         movies.add(film);
-        films.put(film.getYear(), movies);
+        if (films.containsKey(film.getYear())) {
+            films.get(film.getYear()).add(film);
+        } else {
+            films.put(film.getYear(), movies);
+        }
     }
 
-    public Set<Film> getFilmsByYear(int year) {
-        System.out.println("Список фильмов за " + year + " год: ");
-        return films.get(year);
-    }
-
-    public Set<Film> getFilmsByYearAndMonth(int year, Month month) {
-        Set<Film> filmsByYearAndMonth = films.get(year);
-        Set<Film> filmsByMonth = new LinkedHashSet<>();
-        for (Film film : filmsByYearAndMonth) {
-            if (film.getMonth() == month) {
-                filmsByMonth.add(film);
+    public void getFilmsByYear(int year) {
+        for (Map.Entry<Integer, LinkedHashSet<Film>> entry : films.entrySet()) {
+            if(entry.getKey() == year){
+                System.out.println(entry.getKey() + " " + entry.getValue());
             }
         }
-        System.out.println("Список фильмов за " + month + " " + year + " года: ");
-        return filmsByMonth;
     }
 
-    public Set<Film> getFilmsByGenre(Genre genre) {
-        Set<Film> filmsByGenre = new LinkedHashSet<>();
-        for (Set<Film> value : films.values()) {
-            if (value.iterator().next().getGenre() == genre) {
-                filmsByGenre.add(value.iterator().next());
+    public void getFilmsByYearAndMonth(int year, Month month) {
+        for (Map.Entry<Integer, LinkedHashSet<Film>> entry : films.entrySet()) {
+            if (entry.getKey() == year) {
+                for (Film film : entry.getValue()) {
+                    if(film.getMonth() == month) {
+                        System.out.println(film);
+                    }
+                }
             }
         }
-        System.out.println("Список фильмов жанра " + genre + ": ");
-        return filmsByGenre;
     }
 
+    public void getFilmsByGenre(Genre genre) {
+        for (LinkedHashSet<Film> value : films.values()) {
+            if(value.iterator().next().getGenre() == genre) {
+                System.out.println(value.iterator().next());
+            }
+        }
+    }
+
+    public List<Film> getTop10Films(int amountOfTopFilms) {
+        List top10 = new ArrayList<>(amountOfTopFilms);
+        for (Map.Entry<Integer, LinkedHashSet<Film>> entry : films.entrySet()) {
+            for (Film film : entry.getValue()) {
+                top10.add(film);
+                top10.sort(new RatingComparator());
+            }
+        }
+        return top10;
+    }
 
     @Override
     public String toString() {
@@ -54,7 +69,7 @@ public class Cinema {
                 '}';
     }
 
-    public Map<Integer, Set<Film>> getFilms() {
+    public Map<Integer, LinkedHashSet<Film>> getFilms() {
         return films;
     }
 

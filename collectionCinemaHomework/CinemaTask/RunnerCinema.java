@@ -29,35 +29,41 @@ import Collections.homework.collectionCinemaHomework.enums.Month;
 import java.util.*;
 
 public class RunnerCinema {
-    private static final int SIZE = 50;
-    public static void main(String[] args) {
-        Map<Integer, Set<Film>> allFilms = new LinkedHashMap<>();
+    private static final int AMOUNT_OF_TOP_FILMS = 10;
 
-        for (int i = 0; i < 10; i++) {
-            Film film = new Film(i + 1, 2000 + i, Month.APRIL, Genre.COMEDY, (double) i + 0.2);
-            Set<Film> films = new LinkedHashSet<>();
-            films.add(film);
-            allFilms.put(film.getYear(), films);
-        }
+    public static void main(String[] args) {
+        Map<Integer, LinkedHashSet<Film>> allFilms = new LinkedHashMap<>();
+        LinkedHashSet<Film> films = new LinkedHashSet<>();
+
+        Film film1 = new Film(1, 2000, Month.APRIL, Genre.ANIME, 5.4);
+        Film film2 = new Film(2, 2000, Month.MARCH, Genre.HORROR, 3.3);
+
+        films.add(film1);
+        films.add(film2);
+
+        allFilms.put(film1.getYear(), films);
 
 
         Cinema cinema = new Cinema(allFilms);
         System.out.println(cinema);
 
-        cinema.addFilm(new Film(4, 2020, Month.AUGUST, Genre.ANIME, 8.3));
-        cinema.addFilm(new Film(8, 2015, Month.JULY, Genre.THRILLER, 5.8));
-        cinema.addFilm(new Film(7, 2014, Month.JULY, Genre.HORROR, 3.8));
+        cinema.addFilm(new Film(4, 2001, Month.AUGUST, Genre.ANIME, 8.3));
+        cinema.addFilm(new Film(8, 2000, Month.JULY, Genre.THRILLER, 5.8));
+        cinema.addFilm(new Film(7, 2002, Month.JULY, Genre.HORROR, 3.8));
         System.out.println("Список фильмов после добавления: ");
         System.out.println(cinema);
 
-        Set<Film> moviesByYear = cinema.getFilmsByYear(2000);
-        System.out.println(moviesByYear);
+        System.out.println("Список фильмов по переданому году: ");
+        cinema.getFilmsByYear(2000);
 
-        Set<Film> moviesByYearAndMonth = cinema.getFilmsByYearAndMonth(2015, Month.JULY);
-        System.out.println(moviesByYearAndMonth);
+        System.out.println("Список фильмов по переданному году и жанру: ");
+        cinema.getFilmsByYearAndMonth(2000, Month.JULY);
 
-        Set<Film> moviesByGenre = cinema.getFilmsByGenre(Genre.COMEDY);
-        System.out.println(moviesByGenre);
+        System.out.println("Список фильмов по переданному жанру: ");
+        cinema.getFilmsByGenre(Genre.ANIME);
+
+        List<Film> topList = cinema.getTop10Films(AMOUNT_OF_TOP_FILMS);
+        System.out.println("Список фильмов по рейтингу (в порядке убывания): " + "\n" + topList);
 
 
     }

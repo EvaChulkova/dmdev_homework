@@ -45,7 +45,7 @@ public class Film {
                 ", month=" + month +
                 ", genre=" + genre +
                 ", rating=" + rating +
-                '}' + "\n";
+                '}';
     }
 
     public int getId() {
@@ -66,5 +66,26 @@ public class Film {
 
     public double getRating() {
         return rating;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setMonth(Month month) {
+        this.month = month;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }
