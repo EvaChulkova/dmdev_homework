@@ -14,33 +14,27 @@ public class Cinema {
     }
 
     public void addFilm (Film film) {
-        LinkedHashSet<Film> movies = new LinkedHashSet<>();
-        movies.add(film);
         if (films.containsKey(film.getYear())) {
             films.get(film.getYear()).add(film);
         } else {
+            LinkedHashSet<Film> movies = new LinkedHashSet<>();
+            movies.add(film);
             films.put(film.getYear(), movies);
         }
     }
 
-    public void getFilmsByYear(int year) {
-        for (Map.Entry<Integer, LinkedHashSet<Film>> entry : films.entrySet()) {
-            if(entry.getKey() == year){
-                System.out.println(entry.getKey() + " " + entry.getValue());
-            }
-        }
+    public LinkedHashSet<Film> getFilmsByYear(int year) {
+        return films.get(year);
     }
 
-    public void getFilmsByYearAndMonth(int year, Month month) {
-        for (Map.Entry<Integer, LinkedHashSet<Film>> entry : films.entrySet()) {
-            if (entry.getKey() == year) {
-                for (Film film : entry.getValue()) {
-                    if(film.getMonth() == month) {
-                        System.out.println(film);
-                    }
-                }
+    public LinkedHashSet<Film> getFilmsByYearAndMonth(int year, Month month) {
+        LinkedHashSet<Film> result = new LinkedHashSet<>();
+        for (Film film : films.get(year)) {
+            if(film.getMonth() == month) {
+                result.add(film);
             }
         }
+        return result;
     }
 
     public void getFilmsByGenre(Genre genre) {
@@ -51,6 +45,7 @@ public class Cinema {
         }
     }
 
+    /*
     public List<Film> getTop10Films(int amountOfTopFilms) {
         List top10 = new ArrayList<>(amountOfTopFilms);
         for (Map.Entry<Integer, LinkedHashSet<Film>> entry : films.entrySet()) {
@@ -59,6 +54,23 @@ public class Cinema {
                 top10.sort(new RatingComparator());
             }
         }
+        return top10;
+    }
+
+     */
+
+    public List<Film> getTop10Films() {
+        List allFilms = new ArrayList<>(films.entrySet().size());
+        List top10 = new ArrayList<>(10);
+        for (Map.Entry<Integer, LinkedHashSet<Film>> entry : films.entrySet()) {
+            for (Film film : entry.getValue()) {
+                allFilms.add(film);
+                for (int i = 0; i < 10; i++) {
+                    top10.add(allFilms);
+                }
+            }
+        }
+        top10.sort(new RatingComparator());
         return top10;
     }
 

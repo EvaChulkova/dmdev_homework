@@ -54,15 +54,15 @@ public class RunnerCinema {
         System.out.println(cinema);
 
         System.out.println("Список фильмов по переданому году: ");
-        cinema.getFilmsByYear(2000);
+        System.out.println(cinema.getFilmsByYear(2000));
 
         System.out.println("Список фильмов по переданному году и жанру: ");
-        cinema.getFilmsByYearAndMonth(2000, Month.JULY);
+        System.out.println(cinema.getFilmsByYearAndMonth(2000, Month.JULY));
 
         System.out.println("Список фильмов по переданному жанру: ");
         cinema.getFilmsByGenre(Genre.ANIME);
 
-        List<Film> topList = cinema.getTop10Films(AMOUNT_OF_TOP_FILMS);
+        List<Film> topList = cinema.getTop10Films();
         System.out.println("Список фильмов по рейтингу (в порядке убывания): " + "\n" + topList);
 
 
