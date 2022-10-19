@@ -3,19 +3,19 @@ package Collections.homework.collectionChatHomework.Task2;
 import java.util.List;
 
 public class ChatWithUsers {
-    private String chatname;
-    List<User> list;
+    private String chatName;
+    private List users;
 
-    public ChatWithUsers(String chatname, List<User> list) {
-        this.chatname = chatname;
-        this.list = list;
+    public ChatWithUsers(String chatName, List users) {
+        this.chatName = chatName;
+        this.users = users;
     }
 
-    public String getChatname() {
-        return chatname;
+    public String getChatName() {
+        return chatName;
     }
 
-    public List<User> getList() {
-        return list;
+    public List getUsers() {
+        return users;
     }
 }

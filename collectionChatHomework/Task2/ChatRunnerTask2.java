@@ -60,7 +60,7 @@ public class ChatRunnerTask2 {
         ListIterator<ChatWithUsers> chatWithUsersListIterator = chatListWithUsers.listIterator();
         List<User> listWithUsers = new ArrayList<>();
         while(chatWithUsersListIterator.hasNext()) {
-            List<User> firstVersion =  chatWithUsersListIterator.next().getList();
+            List<User> firstVersion =  chatWithUsersListIterator.next().getUsers();
             listWithUsers.addAll(firstVersion);
         }
 
@@ -72,6 +72,26 @@ public class ChatRunnerTask2 {
         }
         return listWithUsers;
     }
+
+    /*
+    private static List<User> getUsersListOlder18(List<ChatWithUsers> chatListWithUsers) {
+        //List<User> list = new ArrayList<>();
+
+        ListIterator<ChatWithUsers> chatWithUsersListIterator = chatListWithUsers.listIterator();
+        ArrayList<User> listWithUsers = new ArrayList<>();
+        while(chatWithUsersListIterator.hasNext()) {
+            List firstVersion =  chatWithUsersListIterator.next().getUsers();
+            listWithUsers.addAll(firstVersion);
+        }
+
+        for (User user : listWithUsers) {
+            if(user.getAge() < 18) {
+                listWithUsers.trimToSize();
+            }
+        }
+        return listWithUsers;
+    }
+     */
 
     public static double findAverageAge(List<User> list) {
         double averageAge = 0;

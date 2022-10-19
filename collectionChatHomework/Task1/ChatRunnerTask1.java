@@ -15,7 +15,6 @@ package Collections.homework.collectionChatHomework.Task1;
 
 import Collections.homework.collectionChatHomework.Task1.comparators.AmountOfUsersComparator;
 import Collections.homework.collectionChatHomework.Task1.comparators.ChatNameComparator;
-import Collections.homework.collectionChatHomework.Task1.comparators.ChatSortDefault;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,17 +38,16 @@ public class ChatRunnerTask1 {
         System.out.println("Сортировка (default): ");
         System.out.println(chatList);
 
-        List<Chat> newList = deleteChatLessThanThousandUsers(chatList);
-        System.out.println("Чаты с количеством пользователей больше 1000:");
-        System.out.println(newList);
+        deleteVoidChatLessThanThousandUsers(chatList);
+        System.out.println(chatList);
 
-        newList.sort(new AmountOfUsersComparator().thenComparing(new ChatNameComparator()));
+        chatList.sort(new AmountOfUsersComparator().thenComparing(new ChatNameComparator()));
         System.out.println("Чаты по убыванию количества пользователей (если количества пользователей равны, то в алфавитном порядке по названию):");
-        System.out.println(newList);
-
+        System.out.println(chatList);
     }
 
-    public static List<Chat> deleteChatLessThanThousandUsers(List<Chat> list) {
+
+    public static void deleteVoidChatLessThanThousandUsers(List<Chat> list) {
         ListIterator<Chat> iterator = list.listIterator();
         while(iterator.hasNext()) {
             int currentValue = iterator.next().getAmountOfUsers();
@@ -57,6 +55,5 @@ public class ChatRunnerTask1 {
                 iterator.remove();
             }
         }
-        return list;
     }
 }

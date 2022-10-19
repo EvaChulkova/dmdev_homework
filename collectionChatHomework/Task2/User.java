@@ -2,12 +2,12 @@ package Collections.homework.collectionChatHomework.Task2;
 
 public class User {
     private int id;
-    private String username;
+    private String nickName;
     private int age;
 
-    public User(int id, String username, int age) {
+    public User(int id, String nickName, int age) {
         this.id = id;
-        this.username = username;
+        this.nickName = nickName;
         this.age = age;
     }
 
@@ -16,7 +16,7 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return nickName;
     }
 
     public int getAge() {
@@ -25,7 +25,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User: {" + " id: " + id + ", username: " + username + ", age: " + age + " }" + "\n";
+        return "User: {" + " id: " + id + ", username: " + nickName + ", age: " + age + " }" + "\n";
     }
 
 }
