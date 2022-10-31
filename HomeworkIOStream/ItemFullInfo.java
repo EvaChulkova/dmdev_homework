@@ -17,7 +17,7 @@ public class ItemFullInfo {
 
     @Override
     public String toString() {
-        return "ItemFullInfo{" +
+        return "ItemFullInfo {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
