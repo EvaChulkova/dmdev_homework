@@ -10,12 +10,12 @@ public class MainRunner {
         Queue<Crystal> crystalQueue = new LinkedBlockingQueue<>();
         AtomicBoolean isNotFull = new AtomicBoolean(true);
 
-        Thread producerCrystals = new Thread(new CrystalProducer(crystalQueue, 500, 0, isNotFull));
-        Thread consumerRed = new Thread(new ConsumerRed(crystalQueue, 100, 0, isNotFull, "Fire", CrystalColorEnum.RED));
-        Thread consumerWhite = new Thread(new ConsumerWhite(crystalQueue, 100, 0, isNotFull, "Air", CrystalColorEnum.WHITE));
+        Thread producerCrystals = new Thread(new CrystalProducer(crystalQueue, 2001, 0, isNotFull));
+        Thread consumerFire = new Thread(new ConsumerRed(crystalQueue, 1000, 0, 0, isNotFull, "Fire", CrystalColorEnum.RED));
+        Thread consumerAir = new Thread(new ConsumerWhite(crystalQueue, 1000, 0, 0, isNotFull, "Air", CrystalColorEnum.WHITE));
 
-        consumerRed.start();
-        consumerWhite.start();
+        consumerFire.start();
+        consumerAir.start();
         producerCrystals.start();
     }
 }

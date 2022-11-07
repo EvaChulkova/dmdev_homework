@@ -35,6 +35,7 @@ public class CrystalProducer implements Runnable{
                     crystalQueue.offer(new Crystal(CrystalColorEnum.WHITE));
                     counter++;
                 }
+                System.out.println("==========  ===========  ==========");
                 System.out.println("Crystal producer: create " + redCrystalsCount + " red and " + (totalCount - redCrystalsCount) + " white crystals");
 
                 try {
@@ -45,5 +46,31 @@ public class CrystalProducer implements Runnable{
             }
         }
         System.out.println("Crystal producer: finish creating crystals");
+    }
+
+    @Override
+    public String toString() {
+        return "CrystalProducer{" +
+                "crystalQueue=" + crystalQueue +
+                ", maxAmountOfCrystals=" + maxAmountOfCrystals +
+                ", counter=" + counter +
+                ", finish=" + finish +
+                '}';
+    }
+
+    public Queue<Crystal> getCrystalQueue() {
+        return crystalQueue;
+    }
+
+    public int getMaxAmountOfCrystals() {
+        return maxAmountOfCrystals;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public AtomicBoolean getFinish() {
+        return finish;
     }
 }
